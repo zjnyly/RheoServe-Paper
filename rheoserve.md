@@ -4,6 +4,17 @@
 
 # Related Work
 ## Sparse Attention 
+
+StreamingLLM
+
+H2O
+snapKV
+
+MagicPIG
+
+
+
+
 Sparse and approximate attention mechanisms have been proposed to alleviate the O(n2) computational burden and O(n) memory access, thereby accelerating LLM inference.  Early approaches, including StreamingLLM (Xiao et al., 2023) and LM-Infinite (Han et al., 2023),
  employ simple and fixed sparsity patterns, such as attention sinks and sliding windows, to reduce attention
  complexity. More advanced methods (Ge et al., 2023; Jiang et al., 2024; Xu et al., 2025; Xiao et al.,
