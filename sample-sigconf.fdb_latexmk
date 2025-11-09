@@ -1,15 +1,15 @@
 # Fdb version 4
-["bibtex sample-sigconf"] 1762520218.36951 "sample-sigconf.aux" "sample-sigconf.bbl" "sample-sigconf" 1762521098.81842 0
+["bibtex sample-sigconf"] 1762590642.52641 "sample-sigconf.aux" "sample-sigconf.bbl" "sample-sigconf" 1762590644.81791 0
   "./ACM-Reference-Format.bst" 1762489102 93560 12e0ced1522ea2bfa9b2fb12855c7e9e ""
-  "./sample-base.bib" 1762489102 49366 df98e6764e8a8591af3f06cf54d52d06 ""
-  "sample-sigconf.aux" 1762521097 8121 2b5b4bf29d1eb38aae702a44cf62c560 "pdflatex"
+  "./sample-base.bib" 1762590639 10380 34aed3a6109ab621e526c5b47f819c84 ""
+  "sample-sigconf.aux" 1762590643 6021 8368d054b3600f7e4efdb91dbe9d85f6 "pdflatex"
   (generated)
   "sample-sigconf.bbl"
   "sample-sigconf.blg"
   (rewritten before read)
-["pdflatex"] 1762521096.77796 "c:/Users/Admin/Desktop/RIC工作/RheoServe/sample-sigconf.tex" "sample-sigconf.pdf" "sample-sigconf" 1762521098.81883 0
+["pdflatex"] 1762590642.89361 "c:/Users/Admin/Desktop/RIC工作/RheoServe/sample-sigconf.tex" "sample-sigconf.pdf" "sample-sigconf" 1762590644.8183 0
   "acmart.cls" 1762489102 122400 54cc4edcc7b9cb1bf0a23c528626957c ""
-  "c:/Users/Admin/Desktop/RIC工作/RheoServe/sample-sigconf.tex" 1762521096 28920 f758515f4db1a706b3cb2bf0ba568368 ""
+  "c:/Users/Admin/Desktop/RIC工作/RheoServe/sample-sigconf.tex" 1762590639 29686 37cf7691107c275f743065c23c9a45e0 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-4.enc" 1758856160 7693 0f2dce6d313c82989ec3a67fc24df2a0 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc" 1758856311 2921 8ca0eb0831f9bc5da080d3697cfe67bf ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1758856311 2933 9ad527ce78d7c5fa0a642dead095f172 ""
@@ -212,12 +212,12 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1758857350 5512713 d5293fe2524c042fff1d1aaaba621917 ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1758857429 3346123 891c29ac8801d4e59df17165918f627f ""
   "c:/texlive/2025/texmf.cnf" 1758857336 713 e69b156964470283e0530f5060668171 ""
-  "comment.cut" 1762521097 64 0754424945249fbfae64d8991d811e64 "pdflatex"
+  "comment.cut" 1762590643 64 0754424945249fbfae64d8991d811e64 "pdflatex"
   "sample-franklin.png" 1762489104 95030 b5b117690b64777baa16f25a8c628f74 ""
-  "sample-sigconf.aux" 1762521097 8121 2b5b4bf29d1eb38aae702a44cf62c560 "pdflatex"
-  "sample-sigconf.bbl" 1762520218 20570 a133e6d945a0519043e83329146a4f61 "bibtex sample-sigconf"
-  "sample-sigconf.out" 1762521097 4428 b9adae3ece8c394777af1af7d2fefda5 "pdflatex"
-  "sample-sigconf.tex" 1762521096 28920 f758515f4db1a706b3cb2bf0ba568368 ""
+  "sample-sigconf.aux" 1762590643 6021 8368d054b3600f7e4efdb91dbe9d85f6 "pdflatex"
+  "sample-sigconf.bbl" 1762590642 1712 4d28b6ea748d03d80535fe94a7371ddb "bibtex sample-sigconf"
+  "sample-sigconf.out" 1762590643 4428 b9adae3ece8c394777af1af7d2fefda5 "pdflatex"
+  "sample-sigconf.tex" 1762590639 29686 37cf7691107c275f743065c23c9a45e0 ""
   (generated)
   "comment.cut"
   "sample-sigconf.aux"

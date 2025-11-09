@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.26)  7 NOV 2025 21:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.26)  8 NOV 2025 16:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -964,7 +964,11 @@ LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
 (Font)              scaled to size 7.0pt on input line 416.
 [2.2]
 
-<sample-franklin.png, id=165, 411.5375pt x 323.2075pt>
+Package natbib Warning: Citation `Lamport:LaTeX' on page 3 undefined on input line 476.
+
+
+
+<sample-franklin.png, id=163, 411.5375pt x 323.2075pt>
 File: sample-franklin.png Graphic file (type png)
 <use sample-franklin.png>
 Package pdftex.def Info: sample-franklin.png  used on input line 517.
@@ -977,6 +981,130 @@ Overfull \hbox (4.77193pt too wide) in paragraph at lines 534--547
 
 
 [3.3{c:/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc} <./sample-franklin.png>]
+
+Package natbib Warning: Citation `Abril07' on page 4 undefined on input line 591.
+
+
+Package natbib Warning: Citation `Cohen07' on page 4 undefined on input line 592.
+
+
+Package natbib Warning: Citation `JCohen96' on page 4 undefined on input line 593.
+
+
+Package natbib Warning: Citation `Kosiur01' on page 4 undefined on input line 593.
+
+
+Package natbib Warning: Citation `Harel79' on page 4 undefined on input line 595.
+
+
+Package natbib Warning: Citation `Editor00' on page 4 undefined on input line 596.
+
+
+Package natbib Warning: Citation `Editor00a' on page 4 undefined on input line 597.
+
+
+Package natbib Warning: Citation `Spector90' on page 4 undefined on input line 599.
+
+
+Package natbib Warning: Citation `Douglass98' on page 4 undefined on input line 600.
+
+
+Package natbib Warning: Citation `Knuth97' on page 4 undefined on input line 601.
+
+
+Package natbib Warning: Citation `Andler79' on page 4 undefined on input line 603.
+
+
+Package natbib Warning: Citation `Hagerup1993' on page 4 undefined on input line 603.
+
+
+Package natbib Warning: Citation `Smith10' on page 4 undefined on input line 604.
+
+
+Package natbib Warning: Citation `VanGundy07' on page 4 undefined on input line 605.
+
+
+Package natbib Warning: Citation `Harel78' on page 4 undefined on input line 606.
+
+
+Package natbib Warning: Citation `Bornmann2019' on page 4 undefined on input line 607.
+
+
+Package natbib Warning: Citation `AnzarootPBM14' on page 4 undefined on input line 607.
+
+
+Package natbib Warning: Citation `Clarkson85' on page 4 undefined on input line 607.
+
+
+Package natbib Warning: Citation `anisi03' on page 4 undefined on input line 608.
+
+
+Package natbib Warning: Citation `Thornburg01' on page 4 undefined on input line 609.
+
+
+Package natbib Warning: Citation `Ablamowicz07' on page 4 undefined on input line 609.
+
+
+Package natbib Warning: Citation `Poker06' on page 4 undefined on input line 609.
+
+
+Package natbib Warning: Citation `Obama08' on page 4 undefined on input line 610.
+
+
+Package natbib Warning: Citation `Novak03' on page 4 undefined on input line 610.
+
+
+Package natbib Warning: Citation `Lee05' on page 4 undefined on input line 610.
+
+
+Package natbib Warning: Citation `JoeScientist001' on page 4 undefined on input line 611.
+
+
+Package natbib Warning: Citation `rous08' on page 4 undefined on input line 612.
+
+
+Package natbib Warning: Citation `SaeediMEJ10' on page 4 undefined on input line 613.
+
+
+Package natbib Warning: Citation `SaeediJETC10' on page 4 undefined on input line 613.
+
+
+Package natbib Warning: Citation `Kirschmer:2010:AEI:1958016.1958018' on page 4 undefined on input line 615.
+
+
+Package natbib Warning: Citation `MR781536' on page 4 undefined on input line 616.
+
+
+Package natbib Warning: Citation `MR781537' on page 4 undefined on input line 616.
+
+
+Package natbib Warning: Citation `Reiser2014' on page 4 undefined on input line 617.
+
+
+Package natbib Warning: Citation `Baggett2025' on page 4 undefined on input line 618.
+
+
+Package natbib Warning: Citation `2004:ITE:1009386.1010128' on page 4 undefined on input line 620.
+
+
+Package natbib Warning: Citation `Kirschmer:2010:AEI:1958016.1958018' on page 4 undefined on input line 620.
+
+
+Package natbib Warning: Citation `TUGInstmem' on page 4 undefined on input line 621.
+
+
+Package natbib Warning: Citation `Thornburg01' on page 4 undefined on input line 621.
+
+
+Package natbib Warning: Citation `CTANacmart' on page 4 undefined on input line 621.
+
+
+Package natbib Warning: Citation `R' on page 4 undefined on input line 622.
+
+
+Package natbib Warning: Citation `UMassCitations' on page 4 undefined on input line 622.
+
+
 
 
 Overfull \hbox (16.84637pt too wide) in paragraph at lines 671--671
@@ -992,25 +1120,13 @@ LaTeX Font Info:    Font shape `T1/zi4/b/n' will be
 \openout3 = `comment.cut'.
 
  Comment 'acks' writing to comment.cut. Straight input of comment.cut. (./comment.cut) (./sample-sigconf.bbl
-LaTeX Info: Redefining \tempurl on input line 81.
 
+Package natbib Warning: Empty `thebibliography' environment on input line 39.
 
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 5.5pt on input line 253.
-LaTeX Info: Redefining \tempurl on input line 275.
-LaTeX Info: Redefining \tempurl on input line 287.
-LaTeX Info: Redefining \tempurl on input line 298.
-LaTeX Info: Redefining \tempurl on input line 310.
-LaTeX Info: Redefining \tempurl on input line 321.
-LaTeX Info: Redefining \tempurl on input line 383.
-LaTeX Info: Redefining \tempurl on input line 396.
-LaTeX Info: Redefining \tempurl on input line 407.
 )
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
+Package natbib Warning: There were undefined citations.
 
-
-[5.5]
 
 Class acmart Warning: ACM keywords are mandatory for papers over two pages.
 
@@ -1021,14 +1137,11 @@ Class acmart Warning: CCS concepts are mandatory for papers over two pages.
 
 
 
-
-Overfull \vbox (1.674pt too high) has occurred while \output is active []
-
- (c:/texlive/2025/texmf-dist/tex/generic/stringenc/se-pdfdoc.def
+(c:/texlive/2025/texmf-dist/tex/generic/stringenc/se-pdfdoc.def
 File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
 ) (c:/texlive/2025/texmf-dist/tex/generic/stringenc/se-utf8.def
 File: se-utf8.def 2019/11/29 v1.12 stringenc: UTF-8
-) [6.6] (./sample-sigconf.aux)
+) [5.5] (./sample-sigconf.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1037,18 +1150,18 @@ Package rerunfilecheck Info: File `sample-sigconf.out' has not changed.
 (rerunfilecheck)             Checksum: B9ADAE3ECE8C394777AF1AF7D2FEFDA5;4428.
  ) 
 Here is how much of TeX's memory you used:
- 21572 strings out of 473190
- 347831 string characters out of 5719979
- 834886 words of memory out of 5000000
- 43723 multiletter control sequences out of 15000+600000
- 745760 words of font info for 435 fonts, out of 8000000 for 9000
+ 21283 strings out of 473190
+ 342074 string characters out of 5719979
+ 821960 words of memory out of 5000000
+ 43577 multiletter control sequences out of 15000+600000
+ 729561 words of font info for 367 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
  90i,13n,131p,1054b,656s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4b.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/LibertineMathMI.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/LibertineMathMI7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/LibertineMathRM.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/libertine/LinBiolinumT.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/libertine/LinBiolinumTB.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/libertine/LinBiolinumTI.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on sample-sigconf.pdf (6 pages, 648162 bytes).
+Output written on sample-sigconf.pdf (5 pages, 627259 bytes).
 PDF statistics:
- 403 PDF objects out of 1000 (max. 8388607)
- 357 compressed objects within 4 object streams
- 88 named destinations out of 1000 (max. 500000)
- 99590 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 276 PDF objects out of 1000 (max. 8388607)
+ 232 compressed objects within 3 object streams
+ 47 named destinations out of 1000 (max. 500000)
+ 95494 words of extra memory for PDF output out of 106986 (max. 10000000)
 

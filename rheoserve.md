@@ -41,3 +41,7 @@ Working in Progress
  
 ## LLM Accelerating Systems
 
+
+
+our approach best fits new architecture design
+nvidia vera rubin
