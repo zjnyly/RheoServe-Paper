@@ -1,0 +1,85 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.5 Chrome/138.0.7204.251 Electron/37.6.1 Safari/537.36" version="28.2.5">
+  <diagram name="第 1 页" id="R6xbM6LZ7betmi_x2gSV">
+    <mxGraphModel dx="1188" dy="1870" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-2" value="CPU Planner" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="384" y="-79" width="176" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-4" value="Fast Cache Management" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="-79" width="190" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-5" value="KV Cache Management" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="-9" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-6" value="GPU Allocator" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="61" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-7" value="CPU Allocator" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="61" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-8" value="GPU Planner" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="384" y="51" width="176" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-9" value="Shared Cache Status" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="384" y="-9" width="176" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-10" value="LSE Softmax" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="-79" width="40" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-11" value="Cache Eviction Plan" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="-80" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-12" value="Cache Retrival Plan" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="20" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-13" value="Dynamic Cache Management" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="175" y="-121" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-14" value="Rer Hybrid Attention" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="420" y="-121" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-15" value="Unified Cache coordination" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="620" y="-122" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-16" value="all vectorinze management operation" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry y="130" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-36" value="Transaction Control" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="215" y="220" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-37" value="Prefill Queue" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="185" y="262" width="190" height="39" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-38" value="Decode Queue" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="185" y="311" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-39" value="Register / view" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="285" y="366" width="90" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-40" value="upload / half" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="185" y="366" width="80" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-41" value="Balance Module" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="185" y="411" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-48" value="Stand Alone" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="65" y="220" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-49" value="插入一个hit rate 的示意图" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="675" y="210" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-50" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="700" y="130" as="sourcePoint" />
+            <mxPoint x="760" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zA-jOpFjLqDuGXEATeGX-51" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="215" y="-290" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

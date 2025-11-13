@@ -1,0 +1,8 @@
+Model Path: Qwen/Qwen3-4B
+Acc: 0.0505
+Average generate length: 7286.055555555556
+Max generate length: 7969
+Total time: 987.19
+Average time per token: 0.0006842934225697987
+Overall sparsity: 70.91606783706095
+
