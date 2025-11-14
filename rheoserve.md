@@ -105,8 +105,7 @@ Rheoserve adopts the design phylisopy of Prefill-Decode (PD) Disaggregated desig
 
 ## PD Disaggretated Runtime & Budget Control 
 给出一个实际的batch 等于1/4/8/16 在sequence len 为2k的时候的batch latency，和预估latency。
-Following the design philosofy of [vllm, pd-disagg], we manage the arriving requests in a software Prefill-Decode (PD) Disaggregated manner. As discussed in section [system overview] For the prefill state, all requests is first registed into a "Transaction", recording metadata of prompt, generated text, page consuming, and full KV Cache on host memory. As host memory is large enough, we can pre-hold much peak arrived requests. We pre allocate fixed sized gpu buffers to ensure in-place memory operation. So when switching to decode stage, we register queued "Transactions" into continues "Slots". And benefit from `torch.view`, we can perform elastic batched decoding without introducing full sized computation. When registering a slot, we 
-we only load a small portion of nearest kv caches onto GPU memory, 
+Following the design philosofy of [vllm, pd-disagg], we manage the arriving requests in a software Prefill-Decode (PD) Disaggregated manner. As discussed in section [system overview] For the prefill state, all requests is first registed into a "Transaction", recording metadata of prompt, generated text, page consuming, and full KV Cache on host memory. As host memory is large enough, we can pre-hold much peak arrived requests. We pre allocate fixed sized gpu buffers to ensure in-place memory operation. So when switching to decode stage, we register queued "Transactions" into continues "Slots". And benefit from `torch.view`, we can perform elastic batched decoding without introducing full sized computation.  We only load a small portion of recent kv caches onto GPU memory, and budget controler will gurantee each running transaction
 
 可以加一个解释head 组织形式的图 (不同head的分布不同)
 and Fast Transaction Switch
