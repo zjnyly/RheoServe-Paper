@@ -67,7 +67,7 @@ A key focus point is for long reasoning tasks,
 
 Our system, unifies the evict and retrive system, using retrive for xxx use evict for ...
 
-
+add a differece table
 
  
 ## LLM Acceleration Systems
@@ -96,28 +96,32 @@ In thie section, we present the overall architecture of RheoServe, which is desi
 ## System Overview 
 加一个图， where rheoserve lies in the whole system, and what inside rheoserve happens
 
-
 As illustrated in Figure X, our system can be seemlessly integrated into the LLM serving pipeline by replacing the standard attention module with RheoServe Engine. The RheoServe Engine is responsible for managing the KV cache across both GPU and CPU memory, as well as orchestrating the attention computation process.
 
-Rheoserve provides a transparent interface attention mechanism, as it dynamically manages the flow of kv cache between GPU and CPU memory, and it automatically merges attentions from heterogeneous devices. The overall RheoServe consists of four subsystems: (1) KV Cache Manager (2) Attention Executor  (3) Cache Coordinatior and (4) Transaction Control System.
+Rheoserve provides a transparent interface attention mechanism, as it dynamically manages the flow of kv cache between GPU and CPU memory, and it automatically merges attentions from heterogeneous devices. The overall RheoServe consists of four subsystems:(1) Runtime Controler (2) Quick & Normal KV Cache Manager (3) Hybrid Attention Executor (4) Cache Coordinatior. We manage KV entries at granularity of block, and we adopt page management [vllm] to store a block. In current implementation, we pack every 64 kv pair into a block, and managed by the Quick KV Cache manager. With block granularity, we can greatly reduce the management complexity and metadata overhead. And through appropriate metadata representation [seer, infllm], block granularity can achieve comparable accuracy with fine granularity. It's worth noting that our management system is fully vectorized, grealty reduing the scheduling overhead.
+
+Rheoserve adopts the design phylisopy of Prefill-Decode (PD) Disaggregated design. When (1) A new request arrives, it first regists into a new transaction, and it goes through the prefill path, where we adopt full attenion computation, and the intermediate KV vectors are directely write through into CPU Cache Pool. When accumulating enough transaction, we register multiple transactions into a batch, (2) preloading a small portion of KV Caches on GPU Cache Pool  and (3) packed into batched query vectors. The KV Cache Manager (4) fast and precicely look up the Quick Cache to identify the important KV Pairs relevant to current query and (5) generate a visit plan for caches in host Memory for CPU side attention. For cache on GPU memory, no matter it is require by quick cache, we (6) collect all cache belong to current transaction for gpu side attention. We then (7) merge the partial-attention from both device to achieve final result. The above mentioned is the inference path. Rheoserve also serves a maintainng path. As illustrated, the newly generated KV pair is used for (8) maintaining the Quick cache as well as the (9) page update of Normal KV Cache. Meanwhile, when performing Quick Cache look up, we (10) maintaing the accumulative block importance score, and for a while we (11) exchange the pages between GPU and CPU to ensure high cache hit rate. 
 
 
-介绍一下算法流程
-一张大图，用黑色符号标注出来对应文字描述的算法
-it worth noting that all implemented in vectorized manner, no loop
+## PD Disaggretated Runtime & Budget Control 
+给出一个实际的batch 等于1/4/8/16 在sequence len 为2k的时候的batch latency，和预估latency。
+Following the design philosofy of [vllm, pd-disagg], we manage the arriving requests in a software Prefill-Decode (PD) Disaggregated manner. As discussed in section [system overview] For the prefill state, all requests is first registed into a "Transaction", recording metadata of prompt, generated text, page consuming, and full KV Cache on host memory. As host memory is large enough, we can pre-hold much peak arrived requests. We pre allocate fixed sized gpu buffers to ensure in-place memory operation. So when switching to decode stage, we register queued "Transactions" into continues "Slots". And benefit from `torch.view`, we can perform elastic batched decoding without introducing full sized computation. When registering a slot, we 
+we only load a small portion of nearest kv caches onto GPU memory, 
 
-## Dynamic Cache Management
 可以加一个解释head 组织形式的图 (不同head的分布不同)
-## Cache Aware Hybrid Attention
+and Fast Transaction Switch
+Budget Control
 
-## Unified Cache Coordination 
-介绍一下cache recorder的作用
-## Transaction and Budget Control
-介绍一下budget control的核心作用
+## Quick & Normal KV Cache Management 
 
-
-# Implementation Details
+## Cache Aware Hybrid Attention 
 介绍一下cpu 的 GQA 特性，然后等效带宽的概念
+
+## Unified Cache Coordination System
+介绍一下cache recorder的作用
+
+<!-- # Implementation Details
+介绍一下cpu 的 GQA 特性，然后等效带宽的概念 -->
 
 # Evaluation
 # Experimental Setup
@@ -132,6 +136,9 @@ with full attention (normalize)
 only with recent attention windows
 only with retrival
 with balanced retrival 
+
+export CC=/home/zjnyly/pkgs/gcc-11.4-install/bin/gcc 
+export CXX=/home/zjnyly/pkgs/gcc-11.4-install/bin/g++
 
 ## Internal Analasysis
 ### Lantency Breakdown
