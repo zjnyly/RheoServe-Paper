@@ -110,11 +110,10 @@ Following the design philosophy of vLLM and PD-disagg, we manage incoming reques
 
 When switching to the decode stage, we map queued transactions into consecutive **slots**. Leveraging `torch.view`, we perform elastic batched decoding without incurring full-size recomputation. Only a small portion of recent KV pages is loaded into GPU memory, and the **budget controller** ensures that each running transaction reserves sufficient GPU KV space as its sequence grows, based on its expected generation length. When a transaction completes, its slot is released (配图) and will trigger a reserved page reallocation for remaining running transactions. 
 
-## Quick K Cache & KV Cache Management 
-The quick K Cache is responsible for fast identifying the important kv entries. For arriving query (Q), we fist perform light weighted attention computation with 
+## Compressed K Cache & KV Cache Management 
+We implemtented dual-track Cache system. The quick K Cache is responsible for fast identifying the important kv entries. It condeses singular K Cache information with block representation. With block size of 64, a 32K lengh sequence only generate 512 block metadata. For arriving query (Q), we fist perform light weighted attention computation with these condense data, then we select top-k blocks based on importance score. It's a well trade off as this stage is 64 times faster then normal attention, while it greatly recudes the need for full attention computation. 
 
-
-We adopt the algorithm from SeeAttention []. For each arriving kv entries, we accumulate it into a block. As long as a new block is generated,
+We adopt a light weight neural network from SeeAttention [] for condensing metadata. For each arriving kv entries, we fill it into a remainder buffer. As long as a the buffer is full, we generate enbedding vector to represent 
 
 
 which utilizes a lightweight attention gate to estimate the importance score of each kv block with low overhead. Based on the estimated importance scores, the Quick KV Cache Manager maintains a small portion of highly important kv blocks on GPU memory, enabling fast access during attention computation. The importance scores are also used to guide the retrieval and eviction of kv blocks between GPU and CPU memory, ensuring that critical kv entries are readily available when needed.
