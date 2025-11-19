@@ -110,8 +110,8 @@ Following the design philosophy of vLLM and PD-disagg, we manage incoming reques
 
 When switching to the decode stage, we map queued transactions into consecutive **slots**. Leveraging `torch.view`, we perform elastic batched decoding without incurring full-size recomputation. Only a small portion of recent KV pages is loaded into GPU memory, and the **budget controller** ensures that each running transaction reserves sufficient GPU KV space as its sequence grows, based on its expected generation length. When a transaction completes, its slot is released (配图) and will trigger a reserved page reallocation for remaining running transactions. 
 
-## Quick K Cache & KV Cache Management 
-The quick K Cache is responsible for fast identifying the important kv entries. For arriving query (Q), we fist perform light weighted attention computation with 
+## Fast K Cache & KV Cache Management 
+The Fast K Cache is responsible for fast identifying the important kv entries. For arriving query (Q), we fist perform light weighted attention computation with 
 
 
 We adopt the algorithm from SeeAttention []. For each arriving kv entries, we accumulate it into a block. As long as a new block is generated,
