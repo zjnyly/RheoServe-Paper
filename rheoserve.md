@@ -111,10 +111,16 @@ Following the design philosophy of vLLM and PD-disagg, we manage incoming reques
 When switching to the decode stage, we map queued transactions into consecutive **slots**. Leveraging `torch.view`, we perform elastic batched decoding without incurring full-size recomputation. Only a small portion of recent KV pages is loaded into GPU memory, and the **budget controller** ensures that each running transaction reserves sufficient GPU KV space as its sequence grows, based on its expected generation length. When a transaction completes, its slot is released (配图) and will trigger a reserved page reallocation for remaining running transactions. 
 
 ## Fast K Cache & KV Cache Management 
-The Fast K Cache is responsible for fast identifying the important kv entries. For arriving query (Q), we fist perform light weighted attention computation with 
+## Compressed K Cache & KV Cache Management 
+We implemtented dual-track Cache system. The quick K Cache is responsible for fast identifying the important kv entries. It condeses singular K Cache information with block representation. We adopt a light weight neural network from SeeAttention [] for condensing metadata. For each arriving kv entries, we fill it into a remainder buffer. As long as a the buffer is full, we generate the block level embedding vector, which allows indentify wheather the block contains possible key vector that is closely related to the incoming query.
 
 
-We adopt the algorithm from SeeAttention []. For each arriving kv entries, we accumulate it into a block. As long as a new block is generated,
+
+With block size of 64, a 32K lengh sequence only generate 512 block metadata. And for arriving query (Q), we fist perform light weighted attention computation with these condense data, then we select top-k blocks based on importance score. It's a well trade off as this stage is 64 times faster than normal attention, but it greatly recudes the retrival burden for full attention computation. 
+
+<!-- The condense method we adopt follows SeeAttention which adpts a light weight neural network for  -->
+
+We adopt a light weight neural network from SeeAttention [] for condensing metadata. For each arriving kv entries, we fill it into a remainder buffer. As long as a the buffer is full, we generate block level key embedding vector for retrival, allowing incoming query 
 
 
 which utilizes a lightweight attention gate to estimate the importance score of each kv block with low overhead. Based on the estimated importance scores, the Quick KV Cache Manager maintains a small portion of highly important kv blocks on GPU memory, enabling fast access during attention computation. The importance scores are also used to guide the retrieval and eviction of kv blocks between GPU and CPU memory, ensuring that critical kv entries are readily available when needed.
@@ -127,6 +133,7 @@ It maintains a small portion of kv cache on GPU memory, which can be directly ac
 
 
 We adopt the method of SeerAttention-R [] as the underlying block granularity represention of KV Cache.
+
 
 
 
