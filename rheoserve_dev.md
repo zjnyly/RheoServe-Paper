@@ -50,6 +50,7 @@ In this section, we present the overall architecture of RheoServe, a heterogeneo
 
 ## System Overview
 
+
 As illustrated in Figure X, RheoServe seamlessly integrates into existing LLM serving pipelines by replacing the standard attention module. It acts as a transparent middleware that virtualizes the KV cache, abstracting away the complexity of heterogeneous memory management.
 
 The architecture is composed of four subsystems. The **Elastic Transaction Scheduler** manages the lifecycle of requests and orchestrates the prefill-decode workflow, while the **Dual-Track Cache System** serves as a hierarchical storage system comprising the **Quick Access Cache** (for fast sparsity estimation) and the **Main Cache** (for KV Cache Storage). Additionally, the **Collaborative Attention Kernel** acts as a hardware-aware execution unit that distributes attention computation across GPU and CPU, and the **Cache Migration Controller** functions as the "brain" of the system, making data movement decisions based on historical access patterns.
@@ -68,15 +69,9 @@ The **Elastic Transaction Scheduler** maximizes system throughput while adhering
 
 ## Sparsity-Decoupled Dual-Track Cache Organization
 
-To resolve the tension between high retrieval accuracy and low storage overhead, we introduce the **Dual-Track Cache Engine**, which decouples sparsity estimation from data storage.
+To resolve the tension between high retrieval accuracy and low storage overhead, we introduce the **Dual-Track Cache Engine**, which decouples sparsity estimation from data storage. The **Pilot Cache** acts as a lightweight index for the KV cache, storing highly compressed **Block Representations** instead of full-precision vectors. By employing a lightweight neural network to project the key vectors of a block into a low-dimensional "representative embedding," the system can rapidly compute relevance scores for incoming queries. This approach allows for **Fast Top-K Selection**, which is orders of magnitude faster than full attention, to identify the **Active Set** of relevant blocks. Additionally, the management of the Pilot Cache is fully vectorized, enabling the system to estimate sparsity for large batches with negligible CPU overhead.
 
-### Pilot Cache (formerly Quick K Cache)
-
-The **Pilot Cache** acts as a lightweight index for the KV cache, storing highly compressed **Block Representations** instead of full-precision vectors. By employing a lightweight neural network to project the key vectors of a block into a low-dimensional "representative embedding," the system can rapidly compute relevance scores for incoming queries. This approach allows for **Fast Top-K Selection**, which is orders of magnitude faster than full attention, to identify the **Active Set** of relevant blocks. Additionally, the management of the Pilot Cache is fully vectorized, enabling the system to estimate sparsity for large batches with negligible CPU overhead.
-
-### Primary Cache (formerly Normal KV Cache)
-
-The **Primary Cache** holds the actual key-value pairs necessary for final attention computation, utilizing a **Unified Virtual Addressing** scheme that extends paged memory management across the PCIe bus. In this architecture, blocks can reside in either the GPU HBM (Hot Tier) or CPU DDR (Cold Tier). To optimize performance, the Primary Cache supports **Zero-Copy Streaming**, allowing the CPU to compute attention directly on host-resident data without the need for explicit device-to-host transfers.
+Complementing this, the **Primary Cache** holds the actual key-value pairs necessary for final attention computation, utilizing a **Unified Virtual Addressing** scheme that extends paged memory management across the PCIe bus. In this architecture, blocks can reside in either the GPU HBM (Hot Tier) or CPU DDR (Cold Tier). To optimize performance, the Primary Cache supports **Zero-Copy Streaming**, allowing the CPU to compute attention directly on host-resident data without the need for explicit device-to-host transfers.
 
 ## Asynchronous CPU-GPU Collaborative Attention Execution
 

@@ -18,12 +18,15 @@ We can make following observations: (1) while eviction based methods focus too m
 
 And to address these challenges, we present RheoServe, a heterogeneous acceleration engine specifically designed for sparse attention models. Our key contributions are summarized as follows:
 
-contribution 1: fine-Grained KV Cache Management System: 提出了一个头粒度的KV缓存管理系统，首次实现了对GPU和CPU之间KV缓存的统一管理，既支持检索（retrieval）也支持淘汰（eviction），有效降低了缓存未命中率和内存带宽压力。
-contribution 2: Unified Offload and Retrieval Mechanism: 通过轻量级的缓存记录器（cache recorder）和预算控制（budget control），成功统一了KV缓存的卸载和检索机制，确保关键KV条目能够高效地在GPU和CPU之间调度。
-contribution 3: High-Performance CPU-GPU Collaboration: 构建了基于LSE-softmax的CPU-GPU协同计算框架，利用DDR5高带宽和GPU流水并行，突破了PCIe带宽瓶颈，同时为未来硬件（如GTC 2025 Vera Rubin架构）提供了优化潜力。
+
 opportunity 1:Scalability for Long-Context Tasks: RheoServe在长生成和长推理任务中表现出色，提供了一个可扩展的解决方案，支持未来更长上下文需求（如128k甚至更长）。
 opportunity 2:Unified Framework for Sparse Attention: 当前方法要么过于关注极端稀疏性（如eviction-based方法），要么过于关注高召回率（如retrieval-based方法），缺乏一个统一的框架。RheoServe通过统一的KV缓存管理系统填补了这一空白。
 opportunity 3:xploiting Emerging Hardware Architectures: 随着NVIDIA Vera Rubin架构等新硬件的出现，主机-设备间的内存带宽显著提升，RheoServe的设计能够充分利用这些硬件特性，进一步提升性能
+
+contribution 1: fine-Grained KV Cache Management System: 提出了一个头粒度的KV缓存管理系统，首次实现了对GPU和CPU之间KV缓存的统一管理，既支持检索（retrieval）也支持淘汰（eviction），有效降低了缓存未命中率和内存带宽压力。
+contribution 2: Unified Offload and Retrieval Mechanism: 通过轻量级的缓存记录器（cache recorder）和预算控制（budget control），成功统一了KV缓存的卸载和检索机制，确保关键KV条目能够高效地在GPU和CPU之间调度。
+contribution 3: High-Performance CPU-GPU Collaboration: 构建了基于LSE-softmax的CPU-GPU协同计算框架，利用DDR5高带宽和GPU流水并行，突破了PCIe带宽瓶颈，同时为未来硬件（如GTC 2025 Vera Rubin架构）提供了优化潜力。
+
 
 <!-- 可以加一个热力图，表示attention的稀疏度 （分区域，retrival 区域，window区域，sink 区域）
 ![alt text](image.png) -->
@@ -112,11 +115,12 @@ When switching to the decode stage, we map queued transactions into consecutive 
 
 ## Fast K Cache & KV Cache Management 
 ## Compressed K Cache & KV Cache Management 
-We implemtented dual-track Cache system. The quick K Cache is responsible for fast identifying the important kv entries. It condeses singular K Cache information with block representation. We adopt a light weight neural network from SeeAttention [] for condensing metadata. For each arriving kv entries, we fill it into a remainder buffer. As long as a the buffer is full, we generate the block level embedding vector, which allows indentify wheather the block contains possible key vector that is closely related to the incoming query.
 
+(embedding 也要画出来)
 
+We implemtented dual-track Cache system. The quick K Cache is responsible for fast identifying the important kv entries. It condeses singular K Cache information with block representation. We adopt a light weight neural network from SeeAttention [] for condensing metadata. For each arriving kv entries, we fill it into a remainder buffer. As long as a the buffer is full, we generate the block level embedding vector, which allows indentify wheather the block contains possible key vector that is closely related to the incoming query. 
 
-With block size of 64, a 32K lengh sequence only generate 512 block metadata. And for arriving query (Q), we fist perform light weighted attention computation with these condense data, then we select top-k blocks based on importance score. It's a well trade off as this stage is 64 times faster than normal attention, but it greatly recudes the retrival burden for full attention computation. 
+For example, if we take block size of 64, a 32K lengh sequence only requre storing 512 block metadata. And for arriving query (Q), we fist perform light weighted attention computation with these condense data, then we select top-k blocks based on importance score. It's a well trade off as this stage is 64 times faster than normal attention, but it greatly recudes the retrival burden for full attention computation. 
 
 <!-- The condense method we adopt follows SeeAttention which adpts a light weight neural network for  -->
 

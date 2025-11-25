@@ -1,0 +1,221 @@
+<mxfile host="app.diagrams.net" modified="2024-05-23T00:00:00.000Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="W_eL1b2c3d4e5f6g7h8i" version="24.4.0" type="device">
+  <diagram id="RheoServeArch" name="Page-1">
+    <mxGraphModel dx="1422" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ===========================================================================================================
+             OUTER CONTAINER: ELASTIC TRANSACTION SCHEDULER (WRAPPING EVERYTHING)
+             =========================================================================================================== -->
+        <mxCell id="SchedulerContainer" value="&lt;b&gt;Elastic Transaction Scheduler &amp; Runtime Environment&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=10;strokeWidth=2;fillColor=#F5F9FF;strokeColor=#6c8ebf;verticalAlign=top;align=left;spacingLeft=10;spacingTop=10;fontSize=14;fontColor=#333333;dashed=1;dashPattern=8 4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="1080" height="680" as="geometry" />
+        </mxCell>
+
+        <!-- ===========================================================================================================
+             TOP REGION: SCHEDULING PLANE (PRE-PROCESS)
+             =========================================================================================================== -->
+        <mxCell id="SchedulingLabel" value="Scheduling Plane (Pre-Process)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#0066CC;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="200" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Node 1: Register -->
+        <mxCell id="Node1" value="&lt;b&gt;① Register Request&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;text-align: left; font-size: 10px; color: #555;&quot;&gt;• Parse Metadata&lt;br&gt;• Alloc Virtual KV&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="280" y="80" width="160" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Node 2: Batching -->
+        <mxCell id="Node2" value="&lt;b&gt;② Batching &amp; Preload&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;text-align: left; font-size: 10px; color: #555;&quot;&gt;• Dynamic Batching&lt;br&gt;• GPU Page Reserve&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="480" y="80" width="160" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Node 3: Packing -->
+        <mxCell id="Node3" value="&lt;b&gt;③ Query Packing&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;text-align: left; font-size: 10px; color: #555;&quot;&gt;• Flatten Queries&lt;br&gt;• Prep for Kernel&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="80" width="160" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Edges Top -->
+        <mxCell id="Edge1-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6c8ebf;" edge="1" parent="1" source="Node1" target="Node2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge2-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6c8ebf;" edge="1" parent="1" source="Node2" target="Node3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+
+        <!-- ===========================================================================================================
+             LEFT REGION: TRANSFORMER LAYER (THE WRAPPED COMPONENT)
+             =========================================================================================================== -->
+        <mxCell id="TransformerGroup" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="80" y="180" width="200" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="TransformerBox" value="" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#f5f5f5;strokeColor=#666666;arcSize=5;" vertex="1" parent="TransformerGroup">
+          <mxGeometry x="0" y="0" width="180" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="TransformerLabel" value="LLM Transformer Layer" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="TransformerGroup">
+          <mxGeometry x="0" y="10" width="180" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="RMSNorm" value="RMSNorm" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1e1e1;strokeColor=#999999;" vertex="1" parent="TransformerGroup">
+          <mxGeometry x="30" y="50" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- Attention Node (Highlight) -->
+        <mxCell id="AttentionNode" value="&lt;b&gt;Attention Mechanism&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:9px;color:#CC6600&quot;&gt;(Replaced by RheoServe)&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=2;" vertex="1" parent="TransformerGroup">
+          <mxGeometry x="20" y="120" width="140" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="AddNorm1" value="Add &amp; Norm" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1e1e1;strokeColor=#999999;" vertex="1" parent="TransformerGroup">
+          <mxGeometry x="30" y="210" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="FFN" value="Feed Forward (FFN)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1e1e1;strokeColor=#999999;" vertex="1" parent="TransformerGroup">
+          <mxGeometry x="30" y="270" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="AddNorm2" value="Add &amp; Norm" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1e1e1;strokeColor=#999999;" vertex="1" parent="TransformerGroup">
+          <mxGeometry x="30" y="330" width="120" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Edges inside Transformer -->
+        <mxCell id="EdgeT1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;" edge="1" parent="TransformerGroup" source="RMSNorm" target="AttentionNode">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EdgeT2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;" edge="1" parent="TransformerGroup" source="AttentionNode" target="AddNorm1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EdgeT3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;" edge="1" parent="TransformerGroup" source="AddNorm1" target="FFN">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EdgeT4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;" edge="1" parent="TransformerGroup" source="FFN" target="AddNorm2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+
+        <!-- ===========================================================================================================
+             MIDDLE RIGHT REGION: EXECUTION PLANE (THE KERNEL)
+             =========================================================================================================== -->
+        <mxCell id="ExecutionPlaneBox" value="&lt;b&gt;Execution Plane (RheoServe Attention Kernel)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;verticalAlign=top;align=left;spacingLeft=10;spacingTop=5;arcSize=5;" vertex="1" parent="1">
+          <mxGeometry x="320" y="200" width="760" height="280" as="geometry" />
+        </mxCell>
+
+        <!-- Node 4: Quick Cache Lookup -->
+        <mxCell id="Node4" value="&lt;b&gt;④ Quick Cache Lookup&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;text-align: left; font-size: 10px; color: #555;&quot;&gt;• Pilot Cache Index&lt;br&gt;• Top-K Selection&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="350" y="280" width="150" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Node 5: Visit Planning (CPU) -->
+        <mxCell id="Node5" value="&lt;b&gt;⑤ Visit Planning (CPU)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="560" y="240" width="160" height="50" as="geometry" />
+        </mxCell>
+        <!-- CPU Icon -->
+        <mxCell id="IconCPU" value="" style="shape=mxgraph.cisco.servers.standard_host;html=1;dashed=0;fillColor=#005073;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="690" y="245" width="20" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Node 6: GPU Collection -->
+        <mxCell id="Node6" value="&lt;b&gt;⑥ GPU Collection&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="560" y="330" width="160" height="50" as="geometry" />
+        </mxCell>
+        <!-- GPU Icon -->
+        <mxCell id="IconGPU" value="" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.gpu_instance;fillColor=#76FF03;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="690" y="335" width="20" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Node 7: Hybrid Merge -->
+        <mxCell id="Node7" value="&lt;b&gt;⑦ Hybrid Merge &amp; Output&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;LSE(Score_GPU, Score_CPU)&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;align=center;verticalAlign=middle;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="270" width="200" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Edges Execution -->
+        <mxCell id="Edge4-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;" edge="1" parent="1" source="Node4" target="Node5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge4-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;" edge="1" parent="1" source="Node4" target="Node6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge5-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;" edge="1" parent="1" source="Node5" target="Node7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge6-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;" edge="1" parent="1" source="Node6" target="Node7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+
+        <!-- ===========================================================================================================
+             BOTTOM REGION: MAINTENANCE PLANE (POST-PROCESS)
+             =========================================================================================================== -->
+        <mxCell id="MaintenanceLabel" value="Maintenance Plane (Post-Process)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#CC6600;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="60" y="580" width="200" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Node 8: Update Quick Cache -->
+        <mxCell id="Node8" value="&lt;b&gt;⑧ Update Quick Cache&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="280" y="580" width="160" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Node 9: Append Main Pages -->
+        <mxCell id="Node9" value="&lt;b&gt;⑨ Append Main Pages&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="480" y="580" width="160" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Node 10: Update Scores -->
+        <mxCell id="Node10" value="&lt;b&gt;⑩ Update Scores&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="580" width="160" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Node 11: Page Exchange -->
+        <mxCell id="Node11" value="&lt;b&gt;⑪ Page Exchange&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#d79b00;align=center;verticalAlign=middle;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="580" width="160" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Edges Bottom -->
+        <mxCell id="Edge8-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;" edge="1" parent="1" source="Node8" target="Node9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge9-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;" edge="1" parent="1" source="Node9" target="Node10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge10-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;" edge="1" parent="1" source="Node10" target="Node11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+
+        <!-- ===========================================================================================================
+             CROSS-PLANE CONNECTIONS
+             =========================================================================================================== -->
+        
+        <!-- 1. Scheduling (Packing) -> Execution (Start) -->
+        <!-- This shows the Scheduler preparing data for the Kernel -->
+        <mxCell id="EdgeSchedToExec" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6c8ebf;strokeWidth=2;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Node3" target="Node4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="760" y="170" />
+              <mxPoint x="425" y="170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 2. Transformer (Attention) -> Execution Plane (Call) -->
+        <!-- This shows the Transformer invoking the RheoServe Kernel -->
+        <mxCell id="EdgeTransToExec" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;strokeWidth=3;fillColor=#ffe6cc;" edge="1" parent="1" source="AttentionNode" target="ExecutionPlaneBox">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="240" y="150" />
+              <mxPoint x="240" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 3. Execution (Output) -> Maintenance (Async Update) -->
+        <mxCell id="EdgeExecToMaint" value="Async Update" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#999999;dashed=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Node7" target="Node8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="520" />
+              <mxPoint x="360" y="520" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
